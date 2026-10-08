@@ -1,0 +1,23 @@
+[package]
+name = "REPLACE_WITH_WASMER_USERNAME/stumble-arena"
+version = "0.1.0"
+description = "Stumble Arena game client and authoritative WebSocket room server"
+license = "MIT"
+readme = "README.md"
+
+# Wasmer Edge runs this Node-compatible command through Edge.js/QuickJS.
+# The package includes the built client, server, and package dependencies.
+[dependencies]
+"wasmer/edgejs-quickjs" = "0.2.5"
+
+[fs]
+"/app" = "."
+
+[[command]]
+name = "server"
+module = "wasmer/edgejs-quickjs:node"
+runner = "wasi"
+
+[command.annotations.wasi]
+main-args = ["/app/server/index.js"]
+env = ["NODE_ENV=production", "PUBLIC_DIR=/app/dist", "PORT=80", "HOST=0.0.0.0"]

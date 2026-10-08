@@ -1,0 +1,12 @@
+# Wasmer Edge app configuration.
+# Replace the owner value with your Wasmer username or organization before deploying.
+kind: wasmer.io/App.v0
+owner: REPLACE_WITH_WASMER_USERNAME
+name: stumble-arena
+package: .
+description: Stumble Arena browser game with an authoritative WebSocket room server
+env:
+  NODE_ENV: production
+  PUBLIC_DIR: ./dist
+  PORT: "80"
+  HOST: "0.0.0.0"

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#100b2f" />
+    <title>Stumble Arena 3D</title>
+    <link rel="stylesheet" href="/src/styles.css?direct" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="hud" class="hud">
+        <div class="brand-block">
+          <div class="eyebrow">THREE.JS · CANNON-ES · LOCAL BUILD</div>
+          <h1>STUMBLE <span>ARENA</span></h1>
+        </div>
+        <div class="round-block">
+          <div id="round-label" class="round-label">CLASSIC · ROUND 1 / 3</div>
+          <div id="level-label" class="level-label">Choose a mode</div>
+          <div id="objective-label" class="objective-label">Race, survive, and qualify</div>
+          <div class="progress-track"><div id="round-progress" class="progress-fill"></div></div>
+        </div>
+        <div class="stats-block">
+          <div><span class="muted">QUALIFIED</span><strong id="qualified-count">0 / 16</strong></div>
+          <div><span class="muted">TIME</span><strong id="time-left">01:20</strong></div>
+          <div><span class="muted">PLACE</span><strong id="place-value">--</strong></div>
+          <div id="team-score-block" class="team-score-block"><span class="muted">SQUAD</span><strong id="team-score">--</strong></div>
+        </div>
+      </div>
+
+      <div id="message-card" class="message-card visible">
+        <div class="message-kicker">READY UP</div>
+        <div id="play-mode-picker" class="play-mode-picker" role="group" aria-label="Play mode">
+          <button class="play-mode-button active" data-play-mode="offline" type="button">OFFLINE EVENTS</button>
+          <button class="play-mode-button" data-play-mode="online" type="button">ONLINE QUEUE</button>
+        </div>
+        <h2 id="message-title">STUMBLE ARENA</h2>
+        <p id="message-body">Choose an offline event, then race bots through colorful obstacle rounds.</p>
+        <div id="mode-picker" class="mode-picker" role="group" aria-label="Offline event">
+          <button class="mode-card active" data-mode="original" type="button">
+            <strong>ORIGINAL</strong><span>3 rounds · qualify</span>
+          </button>
+          <button class="mode-card" data-mode="grand-prix" type="button">
+            <strong>GRAND PRIX</strong><span>5 rounds · points</span>
+          </button>
+          <button class="mode-card" data-mode="showdown" type="button">
+            <strong>SHOWDOWN</strong><span>1 round · survive</span>
+          </button>
+          <button class="mode-card" data-mode="duel" type="button">
+            <strong>DUEL</strong><span>2 racers · race</span>
+          </button>
+          <button class="mode-card" data-mode="clash" type="button">
+            <strong>CLASH</strong><span>4 racers · 3 rounds</span>
+          </button>
+          <button class="mode-card" data-mode="turbo" type="button">
+            <strong>TURBO</strong><span>16 racers · fast</span>
+          </button>
+          <button class="mode-card" data-mode="blitz" type="button">
+            <strong>BLITZ</strong><span>32 racers · 1 round</span>
+          </button>
+          <button class="mode-card" data-mode="teams" type="button">
+            <strong>TEAMS</strong><span>3 rounds · squad score</span>
+          </button>
+          <button class="mode-card" data-mode="time-trial" type="button">
+            <strong>TIME TRIAL</strong><span>solo · fastest run</span>
+          </button>
+        </div>
+        <div id="mode-description" class="mode-description">The original knockout: 32 racers become 16, then 8, then one champion.</div>
+        <div id="online-panel" class="online-panel hidden">
+          <label class="name-label" for="display-name">STUMBLER NAME</label>
+          <input id="display-name" class="name-input" maxlength="18" value="Stumbler" autocomplete="nickname" />
+          <div id="online-status" class="online-status">The authority will place you into a waiting room.</div>
+          <button id="queue-button" class="primary-button" type="button">FIND MATCH <span>QUEUE</span></button>
+        </div>
+        <button id="start-button" class="primary-button">START RUN <span>ENTER</span></button>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="control-pill"><span class="keycap">WASD</span> MOVE</div>
+        <div class="control-pill"><span class="keycap">SPACE</span> JUMP / DIVE</div>
+        <div class="control-pill"><span class="keycap">1</span> PUNCH <span class="keycap">2</span> KICK <span class="keycap">3</span> BANANA <span class="keycap">E</span> ABILITY</div>
+        <button id="restart-button" class="secondary-button">RESTART</button>
+      </div>
+
+      <div id="toast" class="toast" aria-live="polite"></div>
+
+      <div id="touch-controls" class="touch-controls" aria-label="Touch controls">
+        <div id="virtual-joystick" class="virtual-joystick">
+          <div class="joystick-ring"><div id="joystick-knob" class="joystick-knob"></div></div>
+          <span class="joystick-label">MOVE</span>
+        </div>
+        <div class="action-cluster">
+          <button class="action-button banana-button" data-action="banana" type="button">3<br><small>BANANA</small></button>
+          <button class="action-button punch-button" data-action="punch" type="button">1<br><small>PUNCH</small></button>
+          <button class="action-button kick-button" data-action="kick" type="button">2<br><small>KICK</small></button>
+          <button class="action-button jump-button" data-action="jump" type="button">SPACE<br><small>JUMP / DIVE</small></button>
+          <button class="action-button ability-button" data-action="ability" type="button">E<br><small>ABILITY</small></button>
+        </div>
+      </div>
+      <canvas id="game-canvas"></canvas>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
